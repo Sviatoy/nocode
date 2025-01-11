@@ -58,7 +58,7 @@
 #define Z_MAX_PIN                          P1_29  // 10k pullup to 3.3V, 1K series
 
 #ifndef Z_MIN_PROBE_PIN
-  #define Z_MIN_PROBE_PIN                  P4_28  // Connector J8
+  #define Z_MIN_PROBE_PIN                  Z_MAX_PIN  // Connector J8
 #endif
 
 //
@@ -298,29 +298,6 @@
  * 2130s need 1 pin for each driver. 2208/2209s need 2 pins for serial control.
  * This board does not have enough pins to use hardware serial.
  */
-
-#if HAS_DRIVER(TMC2130)
-  // J8
-  #define X_CS_PIN                     PIN_P1_22
-  #define Y_CS_PIN                     PIN_P1_23
-  #define Z_CS_PIN                     PIN_P2_12
-  #define E0_CS_PIN                    PIN_P2_11
-  #define E1_CS_PIN                        P4_28
-
-  // Hardware SPI is on EXP2. See if you can make it work:
-  // https://github.com/makerbase-mks/MKS-SBASE/issues/25
-  #define TMC_USE_SW_SPI
-  #ifndef TMC_SPI_MOSI
-    #define TMC_SPI_MOSI                   P0_03  // AUX1
-  #endif
-  #ifndef TMC_SPI_MISO
-    #define TMC_SPI_MISO                   P0_02  // AUX1
-  #endif
-  #ifndef TMC_SPI_SCK
-    #define TMC_SPI_SCK                    P0_26  // TH4
-  #endif
-
-#endif
 
 #if MB(MKS_SBASE) && HAS_TMC_UART
 
